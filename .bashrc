@@ -39,14 +39,11 @@ if [ "$TERM" == "xterm" ]; then
     # No it isn't, it's gnome-terminal
     export TERM=xterm-256color
 fi
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-default-dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -95,6 +92,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'

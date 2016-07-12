@@ -61,8 +61,19 @@ set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
+"highlighting of search results
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+"Splits
+"Open new splits to the right and bottom
+set splitbelow
+set splitright
+
 " Enhanced keyboard mappings
-"
+
 " in normal mode F2 will save the file
 nmap <F2> :w<CR>
 " in insert mode F2 will exit insert, save, enters insert again
