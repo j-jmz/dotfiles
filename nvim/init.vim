@@ -55,6 +55,7 @@ Plug 'junegunn/gv.vim'
 " Colorscheme
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'sainnhe/edge'
+Plug 'airblade/vim-gitgutter'
 
 " File explorer
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
@@ -62,11 +63,18 @@ Plug 'kyazdani42/nvim-tree.lua'
 
 " Status line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'akinsho/nvim-bufferline.lua'
+
+" Misc
+Plug 'tpope/vim-surround'
+Plug 'qpkorr/vim-bufkill'
+Plug 'yggdroot/indentline'
 
 call plug#end()
 
 lua require("jjimenez")
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+lua require("bufferline").setup {}
 
 if (has("termguicolors"))
   set termguicolors
@@ -95,6 +103,13 @@ nnoremap <leader>Y gg"+yG
 
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+" buffer navigation
+map <Leader>h :bp<cr>
+map <Leader>l :bn<cr>
+
+nnoremap <Leader>w :w<CR>  
+nnoremap <Leader>q :q<CR>  
 
 augroup highlight_yank
     autocmd!

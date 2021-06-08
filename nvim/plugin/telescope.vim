@@ -8,3 +8,4 @@ nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim
 nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>gc :lua require('jjimenez.telescope').git_branches()<CR>
+ 
