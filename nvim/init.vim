@@ -55,6 +55,7 @@ Plug 'junegunn/gv.vim'
 " Colorscheme
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'sainnhe/edge'
+Plug 'glepnir/zephyr-nvim'
 Plug 'airblade/vim-gitgutter'
 
 " File explorer
@@ -69,11 +70,13 @@ Plug 'akinsho/nvim-bufferline.lua'
 Plug 'tpope/vim-surround'
 Plug 'qpkorr/vim-bufkill'
 Plug 'yggdroot/indentline'
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
 
 lua require("jjimenez")
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+lua require('nvim-autopairs').setup()
 lua require("bufferline").setup {}
 
 if (has("termguicolors"))
@@ -86,7 +89,8 @@ endif
 "colorscheme edge
 
 set background=dark
-colorscheme palenight
+"colorscheme palenight
+colorscheme zephyr
 
 let mapleader = " "
 
