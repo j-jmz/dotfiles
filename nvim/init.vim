@@ -109,11 +109,11 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " buffer navigation
-map <Leader>h :bp<cr>
-map <Leader>l :bn<cr>
+nnoremap <Leader>h :bp<cr>
+nnoremap <Leader>l :bn<cr>
 
 nnoremap <Leader>w :w<CR>  
-nnoremap <Leader>q :q<CR>  
+nnoremap <Leader>qq :q<CR>  
 
 augroup highlight_yank
     autocmd!
