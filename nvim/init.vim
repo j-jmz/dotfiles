@@ -37,6 +37,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/symbols-outline.nvim'
+Plug 'simrat39/rust-tools.nvim'
 
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -96,7 +97,7 @@ let mapleader = " "
 
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-"
+
 " greatest remap ever
 vnoremap <leader>p "_dP
 
@@ -114,6 +115,10 @@ nnoremap <Leader>l :bn<cr>
 
 nnoremap <Leader>w :w<CR>  
 nnoremap <Leader>qq :q<CR>  
+
+" resizing vertically
+nnoremap <Leader>+ :vertical resize +5<CR>
+nnoremap <Leader>- :vertical resize -5<CR>
 
 augroup highlight_yank
     autocmd!
