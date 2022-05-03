@@ -10,3 +10,6 @@ nmap <leader>gs :G<CR>
 cnoreabbrev blame Gblame
 cnoreabbrev diff Gdiff
 
+" lazygit option and mappings
+nnoremap <silent> <leader>gg :LazyGit<CR>
+

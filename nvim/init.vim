@@ -52,6 +52,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'kdheepak/lazygit.nvim'
 
 " Colorscheme
 Plug 'drewtempelmeyer/palenight.vim'
