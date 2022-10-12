@@ -59,6 +59,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'sainnhe/edge'
 Plug 'glepnir/zephyr-nvim'
 Plug 'airblade/vim-gitgutter'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " File explorer
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
@@ -92,7 +93,7 @@ endif
 
 set background=dark
 "colorscheme palenight
-colorscheme zephyr
+colorscheme tokyonight-storm
 
 let mapleader = " "
 
