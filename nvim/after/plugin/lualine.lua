@@ -1,8 +1,8 @@
 require('lualine').setup {
   options = {
-    icons_enabled = false,
-    theme = 'nightfly',
-    component_separators = '|',
-    section_separators = '',
+    -- icons_enabled = false,
+    theme = 'duskfox',
+    -- component_separators = '|',
+    -- section_separators = '',
   },
 }

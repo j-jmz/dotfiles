@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
   }
   -- Color schemes
   -- use 'folke/tokyonight.nvim'
-  use "EdenEast/nightfox.nvim"
+  use 'EdenEast/nightfox.nvim'
   use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
   use('nvim-treesitter/playground')
   use('mbbill/undotree')
@@ -81,11 +81,11 @@ return require('packer').startup(function(use)
   }
   use {
     'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup() end
   }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  use 'mrjones2014/smart-splits.nvim'
 end)
