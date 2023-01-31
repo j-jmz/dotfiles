@@ -11,12 +11,17 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
   -- Color schemes
-  -- use 'folke/tokyonight.nvim'
+  use 'folke/tokyonight.nvim'
   use 'EdenEast/nightfox.nvim'
+
+  -- Treesitter
   use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
   use('nvim-treesitter/playground')
+
+  -- undotree
   use('mbbill/undotree')
 
+  -- LSP
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  requires = {
@@ -42,7 +47,6 @@ return require('packer').startup(function(use)
   use('kdheepak/lazygit.nvim')
 
   -- Which key
-  -- Lua
   use {
     "folke/which-key.nvim",
     config = function()
@@ -56,7 +60,6 @@ return require('packer').startup(function(use)
      end
   }
   --Neotree
-  -- Unless you are still migrating, remove the deprecated commands from v1.x
    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
    use {

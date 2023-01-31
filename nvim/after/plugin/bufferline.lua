@@ -1,4 +1,3 @@
-vim.opt.termguicolors = true
 require("bufferline").setup{}
 
 vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
