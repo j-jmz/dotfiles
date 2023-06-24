@@ -1,4 +1,3 @@
--- vim.cmd("colorscheme tokyonight-storm")
--- vim.cmd("set background=dark")
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme catppuccin-mocha")
+-- vim.cmd("colorscheme nightfox")
 
