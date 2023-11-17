@@ -13,6 +13,9 @@ noremap <leader>Y "*Y
 noremap <leader>p "*p
 noremap <leader>P "*P
 
+" paste without overwriting the paste register
+xnoremap p "_dp
+
 " easy window navigation
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
