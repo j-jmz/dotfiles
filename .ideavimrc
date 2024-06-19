@@ -50,6 +50,7 @@ nnoremap <leader>gu :action FindUsages<cr>
 nnoremap <leader>gt :action GotoTest<cr>
 nnoremap <leader>j :action HighlightUsagesInFile<cr>
 nnoremap <leader>k :action QuickJavaDoc<cr>
+nnoremap <leader>r :action ParameterInfo<cr>
 " Tabs
 nnoremap <leader>h :action 
 
