@@ -45,6 +45,8 @@ require("lazy").setup({
 
 	require("jjimenez/plugins/conform"),
 
+	require("jjimenez/plugins/dap"),
+
 	require("jjimenez/plugins/gitsigns"),
 
 	require("jjimenez/plugins/lspconfig"),

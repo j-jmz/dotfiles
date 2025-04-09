@@ -15,6 +15,9 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
+-- Line width
+vim.opt.textwidth = 120
+
 -- Don't wrap up lines
 vim.opt.wrap = false
 
