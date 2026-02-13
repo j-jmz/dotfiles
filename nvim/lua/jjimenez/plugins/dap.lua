@@ -6,19 +6,29 @@ return {
 			"theHamsta/nvim-dap-virtual-text",
 			"nvim-neotest/nvim-nio",
 			"williamboman/mason.nvim",
+			"mfussenegger/nvim-dap-python",
 		},
 		config = function()
 			local dap = require("dap")
 			local ui = require("dapui")
+			local dap_python = require("dap-python")
 
 			require("dapui").setup()
+			require("nvim-dap-virtual-text").setup({
+				commented = true, -- Show virtual text alongside comment
+			})
 
+			-- python
+			dap_python.setup("python3")
+
+			-- c++ and rust
 			dap.adapters.lldb = {
 				type = "executable",
 				command = "/usr/bin/codelldb", --vim.fn.exepath("rust-lldb"), -- adjust as needed
 				name = "lldb",
 			}
 
+			-- rust
 			dap.configurations.rust = {
 				{
 					name = "Launch file",
@@ -53,6 +63,27 @@ return {
 				},
 			}
 
+			vim.fn.sign_define("DapBreakpoint", {
+				text = "",
+				texthl = "DiagnosticSignError",
+				linehl = "",
+				numhl = "",
+			})
+
+			vim.fn.sign_define("DapBreakpointRejected", {
+				text = "", -- or "❌"
+				texthl = "DiagnosticSignError",
+				linehl = "",
+				numhl = "",
+			})
+
+			vim.fn.sign_define("DapStopped", {
+				text = "", -- or "→"
+				texthl = "DiagnosticSignWarn",
+				linehl = "Visual",
+				numhl = "DiagnosticSignWarn",
+			})
+
 			vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
 			vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
 
@@ -61,7 +92,7 @@ return {
 				require("dapui").eval(nil, { enter = true })
 			end)
 
-			vim.keymap.set("n", "<F1>", dap.continue)
+			vim.keymap.set("n", "<leader>cc", dap.continue)
 			vim.keymap.set("n", "<F2>", dap.step_into)
 			vim.keymap.set("n", "<F3>", dap.step_over)
 			vim.keymap.set("n", "<F4>", dap.step_out)
