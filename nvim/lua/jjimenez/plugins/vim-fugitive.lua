@@ -1,3 +1,9 @@
 return {
-	{ "tpope/vim-fugitive" },
+	{
+		"tpope/vim-fugitive",
+		cmd = "Git",
+		keys = {
+			{ "<leader>gs", vim.cmd.Git, desc = "Open [G]it [S]tatus" },
+		},
+	},
 }
