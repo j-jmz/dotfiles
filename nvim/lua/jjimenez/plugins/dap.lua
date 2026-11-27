@@ -1,3 +1,8 @@
+-- dap.lua
+--
+-- Debug Adapter Protocol setup, merged from the former dap.lua (Python/Rust/C++)
+-- and debug.lua (Go, via mason-nvim-dap) into one config with no colliding keymaps.
+
 return {
 	{
 		"mfussenegger/nvim-dap",
@@ -6,29 +11,35 @@ return {
 			"theHamsta/nvim-dap-virtual-text",
 			"nvim-neotest/nvim-nio",
 			"williamboman/mason.nvim",
+			"jay-babu/mason-nvim-dap.nvim",
 			"mfussenegger/nvim-dap-python",
+			"leoluz/nvim-dap-go",
 		},
 		config = function()
 			local dap = require("dap")
-			local ui = require("dapui")
+			local dapui = require("dapui")
 			local dap_python = require("dap-python")
 
-			require("dapui").setup()
-			require("nvim-dap-virtual-text").setup({
-				commented = true, -- Show virtual text alongside comment
+			-- Go: install `delve` and auto-configure it via mason-nvim-dap
+			require("mason-nvim-dap").setup({
+				automatic_setup = true,
+				handlers = {},
+				ensure_installed = {
+					"delve",
+				},
 			})
+			require("dap-go").setup()
 
-			-- python
+			-- Python
 			dap_python.setup("python3")
 
-			-- c++ and rust
+			-- C++ and Rust
 			dap.adapters.lldb = {
 				type = "executable",
 				command = "/usr/bin/codelldb", --vim.fn.exepath("rust-lldb"), -- adjust as needed
 				name = "lldb",
 			}
 
-			-- rust
 			dap.configurations.rust = {
 				{
 					name = "Launch file",
@@ -63,54 +74,87 @@ return {
 				},
 			}
 
+			-- Signs
 			vim.fn.sign_define("DapBreakpoint", {
-				text = "",
+				text = "",
 				texthl = "DiagnosticSignError",
 				linehl = "",
 				numhl = "",
 			})
 
 			vim.fn.sign_define("DapBreakpointRejected", {
-				text = "", -- or "❌"
+				text = "", -- or "❌"
 				texthl = "DiagnosticSignError",
 				linehl = "",
 				numhl = "",
 			})
 
 			vim.fn.sign_define("DapStopped", {
-				text = "", -- or "→"
+				text = "", -- or "→"
 				texthl = "DiagnosticSignWarn",
 				linehl = "Visual",
 				numhl = "DiagnosticSignWarn",
 			})
 
-			vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
-			vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
+			-- Dap UI
+			dapui.setup({
+				icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
+				controls = {
+					icons = {
+						pause = "⏸",
+						play = "▶",
+						step_into = "⏎",
+						step_over = "⏭",
+						step_out = "⏮",
+						step_back = "b",
+						run_last = "▶▶",
+						terminate = "⏹",
+						disconnect = "⏏",
+					},
+				},
+			})
 
-			-- Eval var under cursor
-			vim.keymap.set("n", "<space>?", function()
-				require("dapui").eval(nil, { enter = true })
-			end)
+			require("nvim-dap-virtual-text").setup({
+				commented = true, -- Show virtual text alongside comment
+			})
 
-			vim.keymap.set("n", "<leader>cc", dap.continue)
-			vim.keymap.set("n", "<F2>", dap.step_into)
-			vim.keymap.set("n", "<F3>", dap.step_over)
-			vim.keymap.set("n", "<F4>", dap.step_out)
-			vim.keymap.set("n", "<F5>", dap.step_back)
-			vim.keymap.set("n", "<F13>", dap.restart)
+			-- Keymaps: one definitive set, no collisions
+			vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
+			vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Debug: Step Into" })
+			vim.keymap.set("n", "<F2>", dap.step_over, { desc = "Debug: Step Over" })
+			vim.keymap.set("n", "<F3>", dap.step_out, { desc = "Debug: Step Out" })
+			vim.keymap.set("n", "<F4>", dap.step_back, { desc = "Debug: Step Back" })
+			vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result" })
+			vim.keymap.set("n", "<F13>", dap.restart, { desc = "Debug: Restart" })
 
+			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+			vim.keymap.set("n", "<leader>B", function()
+				dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+			end, { desc = "Debug: Set Breakpoint" })
+			vim.keymap.set("n", "<leader>gb", dap.run_to_cursor, { desc = "Debug: Run to Cursor" })
+			vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: Continue" })
+
+			vim.keymap.set("n", "<leader>?", function()
+				dapui.eval(nil, { enter = true })
+			end, { desc = "Debug: Eval under cursor" })
+
+			-- Auto-open/close dapui
 			dap.listeners.before.attach.dapui_config = function()
-				ui.open()
+				dapui.open()
 			end
 			dap.listeners.before.launch.dapui_config = function()
-				ui.open()
+				dapui.open()
+			end
+			dap.listeners.after.event_initialized.dapui_config = function()
+				dapui.open()
 			end
 			dap.listeners.before.event_terminated.dapui_config = function()
-				ui.close()
+				dapui.close()
 			end
 			dap.listeners.before.event_exited.dapui_config = function()
-				ui.close()
+				dapui.close()
 			end
 		end,
 	},
 }
+-- vim: ts=2 sts=2 sw=2 et

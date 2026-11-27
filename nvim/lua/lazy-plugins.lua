@@ -29,8 +29,6 @@ require("lazy").setup({
 
 	require("jjimenez.plugins.buffers"),
 
-	require("jjimenez.plugins.debug"),
-
 	require("jjimenez.plugins.indent_line"),
 
 	require("jjimenez.plugins.lazygit"),
@@ -38,8 +36,6 @@ require("lazy").setup({
 	require("jjimenez.plugins.smart-splits"),
 
 	require("jjimenez.plugins.undotree"),
-
-	require("jjimenez/plugins/catppuccin"),
 
 	require("jjimenez/plugins/cmp"),
 
@@ -57,7 +53,7 @@ require("lazy").setup({
 
 	require("jjimenez/plugins/todo-comments"),
 
-	require("jjimenez/plugins/tokyonight"),
+	require("jjimenez/plugins/colorscheme"),
 
 	require("jjimenez/plugins/treesitter"),
 
