@@ -29,10 +29,6 @@ require("lazy").setup({
 
 	require("jjimenez.plugins.buffers"),
 
-	require("jjimenez.plugins.indent_line"),
-
-	require("jjimenez.plugins.lazygit"),
-
 	require("jjimenez.plugins.smart-splits"),
 
 	require("jjimenez.plugins.undotree"),
@@ -62,6 +58,8 @@ require("lazy").setup({
 	require("jjimenez/plugins/vim-fugitive"),
 
 	require("jjimenez/plugins/linting"),
+
+	require("jjimenez/plugins/snacks"),
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.

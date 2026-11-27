@@ -11,10 +11,7 @@ return {
 			vim.keymap.set("n", "<b", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
 		end,
 	},
-	{
-		"famiu/bufdelete.nvim",
-		config = function()
-			vim.keymap.set("n", "<leader>c", "<cmd>Bdelete<cr>", { desc = "[C]lose buffer" })
-		end,
-	},
+	-- NOTE: buffer close (<leader>c) moved to snacks.lua (Snacks.bufdelete),
+	-- replacing famiu/bufdelete.nvim
 }
+
